@@ -9,8 +9,18 @@ use strict;
 use warnings;
 use English         qw( -no_match_vars );
 use File::Spec;
-use Test::More      tests => 74;
-use Test::MockObject;
+use Test::More;
+
+BEGIN {
+    eval 'use Test::MockObject';
+
+    if ($EVAL_ERROR) {
+        plan skip_all => 'Test::MocObject required for unit tests';
+    }
+    else {
+        plan tests => 76;
+    }
+}
 
 BEGIN {
     use_ok('Net::FTP::Simple');
@@ -162,7 +172,39 @@ setup_warning_handler();
     else {
         fail("$test: $op did not fail after 4 tries as expected");
     }
+
+    $Net::FTP::Simple::retry_max{$op} = 0;
+
+    # FIXME From here down is basically a copy and paste of the above;
+    # refactor
+    for my $test_args_ref ($test_data[0]) {
+        my $tries   =    $test_args_ref->[0];
+        my @series  = @{ $test_args_ref->[1] };
+
+        $fake_conn->set_series($op, @series);
+
+        is($obj->_op_retry($op), $tries, 
+           "$test: $op succeeded after $tries tries (max 0)");
+    }
+
     
+    $fake_conn->set_series($op, 0, 1);
+
+    eval {
+        $obj->_op_retry($op);
+    };
+
+    if ($EVAL_ERROR =~ m/'$op' failed after 2 attempts/) {
+        pass("$test: $op correctly failed after 2 tries");
+    }
+    elsif ($EVAL_ERROR) {
+        fail("$test: $op failed after 2 tries with unexpected error"
+             . "'$EVAL_ERROR'");
+    }
+    else {
+        fail("$test: $op did not fail after 2 tries as expected");
+    }
+
 }
 
 

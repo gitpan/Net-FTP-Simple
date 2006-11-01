@@ -4,7 +4,7 @@
 #
 # Written by Wil Cooley <wcooley@nakedape.cc>
 #
-# $Id: Simple.pm 640 2006-10-31 00:59:45Z wcooley $
+# $Id: Simple.pm 645 2006-11-01 22:13:22Z wcooley $
 #
 package Net::FTP::Simple;
 use strict;
@@ -18,7 +18,7 @@ use Net::FTP;
 # FIXME MakeMaker handles it okay if it's all on one line, but Perl::Critic
 # pukes :(
 #eval q{ use version; our $VERSION = qv(0.0.5) }; our $VERSION = '0.0005' if ($EVAL_ERROR);
-our $VERSION = '0.0005';
+our $VERSION = '0.0006';
 
 
 sub send_files {
@@ -733,7 +733,7 @@ Net::FTP::Simple requires no configuration files or environment variables.
 
 =head1 DEPENDENCIES
 
-As this module is a facade layer on top of Net::FTP, it required Net::FTP.
+As this module is a facade layer on top of Net::FTP, it requires Net::FTP.
 
 =head1 INCOMPATIBILITIES
 

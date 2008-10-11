@@ -4,7 +4,7 @@
 #
 # Written by Wil Cooley <wcooley@nakedape.cc>
 #
-# $Id: Simple.pm 645 2006-11-01 22:13:22Z wcooley $
+# $Id: Simple.pm 758 2008-10-11 04:29:18Z wcooley $
 #
 package Net::FTP::Simple;
 use strict;
@@ -18,7 +18,7 @@ use Net::FTP;
 # FIXME MakeMaker handles it okay if it's all on one line, but Perl::Critic
 # pukes :(
 #eval q{ use version; our $VERSION = qv(0.0.5) }; our $VERSION = '0.0005' if ($EVAL_ERROR);
-our $VERSION = '0.0006';
+our $VERSION = '0.0007';
 
 
 sub send_files {

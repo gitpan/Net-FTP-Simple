@@ -5,6 +5,7 @@ lib/Net/FTP/Simple.pm
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
+perl-Net-FTP-Simple.spec
 README
 t/00.load.t
 t/10-Net-FTP-Simple.t
@@ -18,4 +19,3 @@ test-data/test-subdir/dir-a/file-a-a
 test-data/test-subdir/file-a
 test-data/test-subdir/file-b
 test-data/test-subdir/file-c
-META.yml                                 Module meta-data (added by MakeMaker)
